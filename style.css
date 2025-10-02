@@ -65,12 +65,20 @@
     display: flex;
     align-items: center;
     margin: 10px 0;
-    background-color: aqua;
+    background-color: #fff;
     padding: 10px 0;
+    color: #000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* thêm bóng */
 }
 
 button {
     border: none;
+}
+
+#main #main__footer .main__footer--list .main__footer--item {
+    width: 540px;
+    max-width: 90%;
+
 }
 
 #main #main__footer .main__footer--list .main__footer--item-button  {
@@ -129,10 +137,11 @@ button {
 
 .delete button:hover {
     cursor: pointer !important;
+    opacity: 0.8;
 }
 
 i {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 @keyframes fadeOut {

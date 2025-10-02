@@ -16,17 +16,8 @@ function addTodo() {
 function createTodoItem(text) {
     const listDiv = document.createElement("div");
     listDiv.classList.add("main__footer--list", "fade-in");  // thêm fade-in
-    listDiv.style.display = "flex";
-    listDiv.style.flexDirection = "row";
-    listDiv.style.justifyContent = "space-between";
-    listDiv.style.alignItems = "center";
-    listDiv.style.margin = "10px 0";
-    listDiv.style.backgroundColor = "aqua";
-    listDiv.style.padding = "10px 0";
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("main__footer--item");
-    itemDiv.style.width = "540px";
-    itemDiv.style.maxWidth = "90%";
     const p = document.createElement("p");
     p.textContent = text;
     p.style.padding = "0 0 0 10px";
