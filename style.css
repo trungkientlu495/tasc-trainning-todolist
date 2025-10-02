@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main {
+    width: 560px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(239, 246, 255, 0.9);
+    margin-top: 5%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* thêm bóng */
+}
+
+#main #main__header {
+    text-align: left;
+    padding: 15px 0;
+    width: 100%;
+    margin: 0 10px;
+}
+
+#main #main__header h3 {
+    font-size: 28px;         /* chữ to hơn */
+    font-weight: bold;       /* đậm */
+    color: #007bff;          /* xanh dương nổi bật */
+    text-align: left;      /* căn giữa */
+    letter-spacing: 1px;     /* giãn cách chữ chút xíu */
+    text-transform: uppercase; /* viết hoa toàn bộ */
+    margin: 0;  
+}
+
+#main #main__body {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+}
+
+#main #main__body input {
+    width: 510px;
+    padding: 5px;
+}
+
+#main #main__body button {
+    padding: 2px;
+    height: 100%;
+}
+
+#main #main__footer {
+    width: 540PX;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;   /* Giới hạn chiều cao vùng chứa list */
+    overflow-y: auto;    /* Khi list dài hơn 250px thì sẽ hiện thanh cuộn */
+}
+
+#main #main__footer .main__footer--list {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    background-color: aqua;
+    padding: 10px 0;
+}
+
+button {
+    border: none;
+}
+
+#main #main__footer .main__footer--list .main__footer--item-button  {
+   align-self: center;
+}
+
+#main #main__report {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: auto; 
+}
+
+#main #main__body #plus {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #007bff; /* xanh dương */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.main__footer--list {
+    width: 100%;
+    word-wrap: break-word;   /* Tự xuống dòng khi quá dài */
+    overflow-wrap: break-word; /* Chuẩn hơn, thay thế word-wrap */
+    white-space: normal; /* Cho phép xuống dòng */
+}
+
+#main #main__body #plus:hover {
+    background-color: #0056b3;
+}
+
+#main #main__footer .delete {
+    display: none;
+}
+
+#clearAll {
+    padding: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+#clearAll:hover {
+    opacity: 0.8;
+}
+
+#main #main__footer .main__footer--list:hover .delete {
+    display: block;
+}
+
+.delete button:hover {
+    cursor: pointer !important;
+}
+
+i {
+    font-size: 20px;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.4); /* hơi thu nhỏ lại cho đẹp */
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.9s forwards; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.9s forwards;
+}
+
