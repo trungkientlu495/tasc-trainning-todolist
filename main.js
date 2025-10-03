@@ -5,6 +5,13 @@ function addTodo() {
         alert("Vui lòng nhập todo!");
         return;
     }
+    let texts = getAllTodosText();
+    console.log(texts);
+     // Kiểm tra trùng
+    if (texts.some(t => t.toLowerCase() === value.toLowerCase())) {
+        alert("Không được phép trùng!");
+        return;
+    }
     const newTodo = createTodoItem(value);
     document.getElementById("main__footer").prepend(newTodo);
     var count = document.getElementsByClassName('main__footer--list').length;
@@ -13,9 +20,16 @@ function addTodo() {
     input.value = "";
 }
 
+function getAllTodosText() {
+    const todoItems = document.querySelectorAll(".main__footer--list p");
+    const texts = Array.from(todoItems).map(item => item.textContent);
+    return texts;
+}
+
 function createTodoItem(text) {
     const listDiv = document.createElement("div");
     listDiv.classList.add("main__footer--list", "fade-in");  // thêm fade-in
+    listDiv.setAttribute("draggable", "true"); // cho phép kéo
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("main__footer--item");
     const p = document.createElement("p");
@@ -78,3 +92,65 @@ document.getElementById("clearAll").addEventListener("click", function () {
     var note = document.getElementById("main__footer--note");
     note.style.display = "block";
 });
+
+// Hàm tìm kiếm
+function searchTodos() {
+    const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+    const todoItems = document.querySelectorAll(".main__footer--list");
+    let visibleCount = 0; // đếm số todo hiển thị
+    todoItems.forEach(item => {
+        const text = item.querySelector("p").textContent.toLowerCase();
+        // Nếu keyword rỗng hoặc chứa text thì hiển thị
+        if (keyword === "" || text.startsWith(keyword)) {
+            item.style.display = "flex";
+            visibleCount++;
+        } else {
+            item.style.display = "none";
+        }
+    });
+     // Hiển thị thông báo "Không có bản ghi nào" nếu visibleCount = 0
+    const note = document.getElementById("main__footer--note");
+    if (visibleCount === 0) {
+        note.style.display = "block";
+    } else {
+        note.style.display = "none";
+    }
+}
+
+let draggedItem = null;
+
+// Khi bắt đầu kéo
+document.addEventListener("dragstart", function(e) {
+    if (e.target.classList.contains("main__footer--list")) {
+        draggedItem = e.target;
+        e.dataTransfer.effectAllowed = "move";
+        e.target.classList.add("dragging"); // hiệu ứng
+    }
+});
+
+// Khi kết thúc kéo
+document.addEventListener("dragend", function(e) {
+    if (e.target.classList.contains("main__footer--list")) {
+        e.target.classList.remove("dragging");
+        draggedItem = null;
+    }
+});
+
+// Cho phép thả lên item khác
+document.addEventListener("dragover", function(e) {
+    e.preventDefault(); // bắt buộc để drop hoạt động
+    const target = e.target.closest(".main__footer--list");
+    if (!target || target === draggedItem) return;
+
+    const container = target.parentNode;
+    const rect = target.getBoundingClientRect();
+    const next = (e.clientY - rect.top) / rect.height > 0.5;
+    container.insertBefore(draggedItem, next ? target.nextSibling : target);
+});
+
+
+// Bắt sự kiện input
+document.getElementById("searchInput").addEventListener("input", searchTodos);
+
+// Bắt sự kiện click nút search
+document.getElementById("searchBtn").addEventListener("click", searchTodos);

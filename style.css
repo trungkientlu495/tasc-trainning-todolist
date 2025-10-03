@@ -20,6 +20,33 @@
     padding: 15px 0;
     width: 100%;
     margin: 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#main__header--search {
+    display: flex;
+    margin-right: 20px;
+}
+
+#main__header--search input {
+    padding: 5px;
+    width: 180px; /* điều chỉnh tùy ý */
+    border: 1px solid #ccc;
+}
+
+#main__header--search button {
+    padding: 2px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#main__header--search button:hover {
+    background-color: #0056b3;
 }
 
 #main #main__header h3 {
@@ -172,4 +199,10 @@ i {
 .fade-in {
     animation: fadeIn 0.9s forwards;
 }
+
+.main__footer--list.dragging {
+    opacity: 0.5;
+    border: 2px dashed #888;
+}
+
 
